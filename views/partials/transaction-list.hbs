@@ -1,0 +1,22 @@
+<h2 class="chart-title">{{data.title}}</h2>
+<button class="js-showSelection">
+    <span class="showSelection_hide">Hide/</span>
+    <span class="showSelection_show">Show</span>
+</button>
+
+<div class="transactions-list">
+    {{#each data.list as |transaction|}}
+        <div class="transactions-list__item">
+            <div class="transactions-list__item-date">{{transaction.Date}}</div>
+            <div class="transactions-list__item-retailer">{{transaction.Retailer}}</div>
+            <div class="transactions-list__item-amount">{{transaction.Amount}}</div>
+            <div class="transactions-list__item-checkbox"><input data-amount={{transaction.Amount}} class="transactions-list__item-checkbox-input" type="checkbox"></div>
+        </div>
+    {{/each}}
+</div>
+
+<div class="transactions-list_total border">
+        <div class="transactions-list_total-amount js-total-amount">
+            00.00
+        </div>
+</div>
