@@ -1,0 +1,61 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add --D babel-cli
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  9.11.1
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "statement-reader",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "nodemon server.js --watch"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.15.1",
+      "consolidate": "^0.14.1",
+      "csv-parser": "^1.9.3",
+      "express": "^4.13.4",
+      "handlebars": "^4.0.5",
+      "hbs": "^4.0.0",
+      "multer": "^1.1.0",
+      "underscore": "^1.8.3"
+    },
+    "devDependencies": {
+      "cors": "^2.8.4",
+      "nodemon": "^1.9.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Missing list of packages to add to your project.
+      at new MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
+      at Object.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:40587:13)
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:98:30)
+      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:116:14
+      at new Promise (<anonymous>)
+      at new F (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:23451:28)
+      at Object.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:95:12)
+      at Object.run (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:40599:19)
+      at run (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:89113:20)

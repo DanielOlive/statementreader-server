@@ -1,17 +1,16 @@
-/**
- * Created by dolive on 5/20/16.
- */
-var config = require('./config');
-var statementReader = require('./services/statementReader');
-var express = require('express');
-var bodyParser = require('body-parser');
-var cors = require('cors')
-var app = express();
-var hbs = require('hbs');
-var reader = statementReader();
-var partialLoader = require('./services/partial-loader')();
-var multer = require('multer');
-var upload = multer({dest: './uploads/'});
+
+import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import hbs from 'hbs'
+import multer from 'multer'
+
+import {importCSVFile, getJsonFile} from './services/statementReader.js'
+
+const config = require('./config');
+const app = express();
+const partialLoader = require('./services/partial-loader')();
+const upload = multer({dest: './uploads/'});
 
 
 app.use(cors())
@@ -21,22 +20,16 @@ app.use(express.static('../public/views/'));
 app.set('view engine', 'hbs');
 
 
-app.post('/upload', upload.single('avatar'), function (req, res) {
-
-    var filepath = req.file.destination + req.file.filename;
-
-    reader.importCSVFile(filepath, function (val) {
-        //res.redirect('/');
-    });
-
-    res.redirect('/');
+app.post('/upload', upload.single('file'), (req, res) => {
+    const filepath = req.file.destination + req.file.filename;
+    importCSVFile(filepath);
     res.status(204).end();
 });
 
 app.get('/transactions', function (req, res) {
 
-    reader.getJsonFile(function (data) {
-        var obj = {
+    getJsonFile(function (data) {
+        const obj = {
                 list: data.account,
                 title: 'Transactions'
         };
