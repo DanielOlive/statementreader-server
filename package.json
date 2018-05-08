@@ -13,16 +13,29 @@
     "body-parser": "^1.15.1",
     "consolidate": "^0.14.1",
     "csv-parser": "^1.9.3",
+    "dotenv": "^5.0.1",
     "express": "^4.13.4",
     "handlebars": "^4.0.5",
     "hbs": "^4.0.0",
+    "mongodb": "^3.0.7",
+    "mongoose": "^5.0.17",
     "multer": "^1.1.0",
+    "node-fetch": "^2.1.2",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
     "babel-preset-env": "^1.6.1",
     "cors": "^2.8.4",
-    "nodemon": "^1.9.2"
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "nodemon": "^1.9.2",
+    "prettier": "^1.12.1"
   }
 }

@@ -1,28 +1,28 @@
-/**
- * Created by dolive on 5/20/16.
- */
-var csv = require('csv-parser'),
-    fs = require('fs'),
-    _ = require('underscore'),
-    path = require('path'),
-    config = require('../config'),
-    account = [],
-    self,
-    json = [],
-    check = /(LONDON|PAYMENT RECEIVED)/,
-    csvStream = csv(config.csvDefaults);
+import fs from "fs";
+import csv from 'csv-parser'
+import _ from 'underscore'
+
+import fetch from 'node-fetch'
+import config from '../config'
+import {
+    error
+} from "util";
+
+const json = []
+const check = /(LONDON|PAYMENT RECEIVED)/
+const csvStream = csv(config.csvDefaults);
+let account = []
 
 export const importCSVFile = (_file, _callback) => {
 
     convertCSVData(
-        _file, 
+        _file,
         (res) => {
             getJsonFile((jsonData) => {
                 console.log('importing file');
-                console.log(res)
                 mergeData(jsonData, res);
             })
-    });
+        });
 }
 
 const mergeData = (existingTrans, newTrans) => {
@@ -32,29 +32,40 @@ const mergeData = (existingTrans, newTrans) => {
     // const existingTransactions = old
     // console.log(obj)
     // writeJsonFile(obj)
-    
-    const  obj = {};
+
+    const obj = {};
     const newTransactions = JSON.parse(newTrans);
 
     obj.account = _.uniq(
         _.union(
-            existingTrans.account, 
+            existingTrans.account,
             newTransactions.account
-        ), 
-        false, 
+        ),
+        false,
         (item, key, reference) => {
-        return item.reference;
-    });
+            return item.reference;
+        });
 
     if (_.isEmpty(existingTrans)) {
         console.log('exists');
         // existingTrans.account = obj.account;
         // writeJsonFile(obj);
-    }else{
+    } else {
         console.log('does note exist');
-    } 
-    writeJsonFile(obj);
+    }
 
+
+    fetch('http://localhost:3020/api/transactions', {
+            method: 'POST',
+            body: JSON.stringify(obj.account),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((res) => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => console.log('Success:', response))
+    //writeJsonFile(obj);
 
 }
 
@@ -75,7 +86,7 @@ export const convertCSVData = (_file, _callback) => {
         })
 
         .on('error', (err) => console.log('ERROR: Cannot convert CSV Data', err))
-        .on('end', (data) =>{
+        .on('end', (data) => {
             account = sortDate(json);
             _callback(JSON.stringify({
                 account
@@ -115,10 +126,10 @@ export const getJsonFile = (_callback) => {
     console.log('load file');
     fs.readFile(config.database, 'UTF8', (err, data) => {
 
-        if (err){
+        if (err) {
             console.log(err, err.code)
             // If no file exists create one then re-import it
-            if(err.code === 'ENOENT') {
+            if (err.code === 'ENOENT') {
                 writeJsonFile({})
                 getJsonFile(_callback)
             }
