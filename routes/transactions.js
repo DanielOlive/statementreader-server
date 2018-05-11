@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     Transactions.find({}).sort({ date : -1 }).then(trans => {
         if(trans){
             // console.log(res)
-            res.json({success:true, data: trans})  
+            res.json({ success: true, data:trans })  
         } else {
             res.status(400).json({errors:{ global: "No transactions available" }})
         }
@@ -26,7 +26,10 @@ router.post('/', (req, res) => {
      const trans = new Transactions()
      trans.collection.insert(transactions,{ upsert: true }, (err, docs) => {
         if (err) console.error(err);
-        if (!err) console.log("Multiple documents inserted to Collection", docs);
+        if (!err) {
+            console.log("Multiple documents inserted to Collection", docs);
+            res.json({ success: true })
+        }
       });
 })
 

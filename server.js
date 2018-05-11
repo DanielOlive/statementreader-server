@@ -26,6 +26,10 @@ app.use(express.static('../public'));
 app.use(express.static('../public/views/'));
 app.set('view engine', 'hbs');
 
+app.post('/api/auth', (req, res) => {
+    res.status(400).json({ errors: { global: 'Invalid credentials' }});
+})
+
 const server = app.listen(3020, () => {
-    console.log('Server started on port ' + server.address().port + '...');
+    console.log(`Server started on port ${server.address().port} ...`);
 });
