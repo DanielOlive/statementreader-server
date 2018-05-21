@@ -1,18 +1,20 @@
 import fs from "fs";
-import csv from 'csv-parser'
+import csvParse from 'csv-parse'
 
 import fetch from 'node-fetch'
 import config from '../config'
-import transactions from "../routes/transactions";
 
-const json = []
-const csvStream = csv(config.csvDefaults);
+// import transactions from "../routes/transactions";
+
+
 
 const saveTransactions = (newTrans) => {
 
     const newTransactions = newTrans;
 
-    fetch('http://localhost:3020/api/transactions', {
+    console.log(newTransactions)
+
+    fetch(config.transactionPath, {
             method: 'POST',
             body: JSON.stringify(newTransactions),
             headers: {
@@ -25,27 +27,34 @@ const saveTransactions = (newTrans) => {
 }
 
 const csvLoader = (_file) => {
-
+    const csvStream = csvParse(config.csvOptions);
+    const json = []
     fs.createReadStream(_file)
 
         .pipe(csvStream)
 
         .on('data', (data) => {
+            const transaction = {}
+            // TODO: add support for more Back csv formats
+            data.forEach((item, idx) => {
+                if (config.headers[idx] !== undefined) 
+                transaction[config.headers[idx]] = item
+            });
+             const current = transaction.date.split('/')
+            
+             transaction.reference = transaction.reference.split(' ')[1];
+             transaction.amount = transaction.amount.replace(' ','');
+             transaction.processDate = transaction.processDate.replace(' ','');
+             transaction.date = new Date(`${current[2]}-${current[1]}-${current[0]}`)
+            
+            // const obj = transaction.map((items, idx) => ({config.csvDefaults.header[idx]: items})
 
-            const transaction = data
-            const current = transaction.date.split('/')
-           
-            transaction.reference = data.reference.split(' ')[1];
-            transaction.amount = data.amount.replace(' ','');
-            transaction.processDate = data.processDate.replace(' ','');
-            transaction.date = new Date(`${current[2]}-${current[1]}-${current[0]}`)
-
-            json.push(transaction);
+             json.push(transaction);
         })
-
         .on('end', () => {
 
             const streamData = JSON.stringify({json}, null, 4)
+            console.log(streamData)
             saveTransactions(JSON.parse(streamData).json)
         })
         .on('error', (err) => console.log(err.message))
