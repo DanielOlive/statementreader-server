@@ -1,12 +1,12 @@
 import mongoose from 'mongoose'
 
 const schema = new mongoose.Schema({
-    "date":{type: String},
+    "created":{type: Date},
+    "date":{type: Date},
     "reference": {type: String, required:true, index: true},
     "amount": {type: String},
     "retailer": {type: String},
     "processDate": {type: String},
-    "sortDate": {type: String},
     "paid": {type: Boolean},
     "paidDate" : {type: Date}
 },{ timestamps: true })

@@ -5,11 +5,14 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node -- server.js"
+    "start": "nodemon --exec babel-node -- server.js prettier"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
+    "bcrypt": "^2.0.1",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.15.1",
     "consolidate": "^0.14.1",
     "csv-parse": "^2.4.0",
@@ -17,6 +20,7 @@
     "express": "^4.13.4",
     "handlebars": "^4.0.5",
     "hbs": "^4.0.0",
+    "jsonwebtoken": "^8.2.2",
     "mongodb": "^3.0.7",
     "mongoose": "^5.0.17",
     "multer": "^1.1.0",

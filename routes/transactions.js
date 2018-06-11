@@ -60,9 +60,10 @@ router.post('/update', (req, res) => {
 const upload = multer({dest: './uploads/'});
 
 router.post('/upload', upload.single('file'), (req, res) => {
+
     const filepath = req.file.destination + req.file.filename;
-    csvLoader(filepath);
-    console.log(filepath)
+    const provider = req.body.provider;
+    csvLoader(filepath, provider);
     res.status(204).end();
 });
 

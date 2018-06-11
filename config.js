@@ -6,6 +6,7 @@ const config = {
     database: './data/data.json',
     csvFile: './data02.csv',
     partialPath: '../views/partials/',
+    transactionPath: 'http://localhost:3020/api/transactions',
     error: {
         uploadfile: 'Please upload a file'
     },
@@ -21,7 +22,10 @@ const config = {
         auto_parse_date: true,
         cast_date: true
     },
-    headers: ['date', 'reference', 'amount', 'retailer', 'processDate'] // Specifing the headers
+    headers:{
+        amex: ['date', 'reference', 'amount', 'retailer', 'processDate'], // Specifing the headers
+        halifax: ['date', 'processDate', 'reference', 'retailer', 'amount'] // Specifing the headers
+    } 
 };
 
 module.exports = config;
