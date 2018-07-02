@@ -1,42 +1,46 @@
-import mongoose, { SchemaType } from 'mongoose'
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
+import mongoose, { SchemaType } from 'mongoose';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
-const schema = new mongoose.Schema({
+const schema = new mongoose.Schema(
+  {
     email: {
-        type: String,
-        required: true,
-        lowercase: true,
-        index: true
+      type: String,
+      required: true,
+      lowercase: true,
+      index: true
     },
     passwordHash: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     }
-}, {
+  },
+  {
     timestamps: true
-})
+  }
+);
 
 // Password checking
 schema.methods.isValidPassword = function isValidPassword(password) {
-    return bcrypt.compareSync(password, this.passwordHash)    
-} 
+  return bcrypt.compareSync(password, this.passwordHash);
+};
 
 // JSON Web Token encrypt
 
 schema.methods.generateJWT = function generateJWT() {
-    return jwt.sign({
-        email: this.email
-    }, 
+  return jwt.sign(
+    {
+      email: this.email
+    },
     process.env.JWT_SECRET
-)}
+  );
+};
 
 schema.methods.toAuthJSON = function toAuthJSON() {
-    return {
-        email: this.email,
-        token: this.generateJWT()
-    }
-}
+  return {
+    email: this.email,
+    token: this.generateJWT()
+  };
+};
 
-
-export default mongoose.model('User', schema)
+export default mongoose.model('User', schema);

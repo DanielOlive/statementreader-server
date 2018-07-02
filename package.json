@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "prettier":"prettier --single-quote --no-semi --write \"{/**/*.{js,jsx},!(node_modules)/**/}*.{js,jsx}\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node -- server.js prettier"
+    "start": "nodemon --exec babel-node -- server.js 'npm run prettier'"
   },
   "author": "",
   "license": "ISC",
