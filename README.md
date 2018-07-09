@@ -11,10 +11,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 Please ensure you have MongoDB installed prior to running this server
 
-```
-Give examples
-```
-
 ### Installing
 
 Install the dependency's 
