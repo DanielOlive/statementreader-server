@@ -1,45 +1,58 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+# Statement Reader Server
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+This project was created to help support the monitoring of personal account transactions. Features include importing csv data, filtering transactions and marking items as paid/complete. At present data can be imported from two providers American Express and Halifax bank, more to follow. A basic user authentication has been added for security purposes using JWT. This tool has been useful to me an ensures I deduct the correct amounts from other accounts.
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+## Getting Started
 
----
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
-## Edit a file
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+### Prerequisites
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+Please ensure you have MongoDB installed prior to running this server
 
----
+```
+Give examples
+```
 
-## Create a file
+### Installing
 
-Next, you’ll add a new file to this repository.
+Install the dependency's 
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+```
+yarn install
+```
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+Start Mongo server
+```
+mongod
+```
 
----
+Start the API server
 
-## Clone a repository
+```
+yarn start
+```
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
+The node server acts as a API service for the front-end Statement Reader project found [here] (https://github.com/DanielOlive/statementreader)
 
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
+## Built With
 
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+* [Node](https://nodejs.org/en/)
+* [Express](https://expressjs.com/)
+* [MongoDB](https://maven.apache.org/)
+* [Mongoose](https://maven.apache.org/)
+* [JWT](https://rometools.github.io/rome/) - encryption
+* [Babel](https://babeljs.io/)
+* [Eslint](https://maven.apache.org/)
+* [Prettier](https://maven.apache.org/)
+* [csv-parse](https://maven.apache.org/)
+
+
+## Authors
+
+* **Daniel De Oliveira** - *Initial work* - [DanielOlive](https://github.com/DanielOlive)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
