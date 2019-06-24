@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "prettier":"prettier --single-quote --no-semi --write \"{/**/*.{js,jsx},!(node_modules)/**/}*.{js,jsx}\"",
+    "prettier": "prettier --single-quote --no-semi --write \"{/**/*.{js,jsx},!(node_modules)/**/}*.{js,jsx}\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node -- server.js 'npm run prettier'"
   },
@@ -19,8 +19,8 @@
     "csv-parse": "^2.4.0",
     "dotenv": "^5.0.1",
     "express": "^4.13.4",
-    "handlebars": "^4.0.5",
-    "hbs": "^4.0.0",
+    "handlebars": "^4.1.2",
+    "hbs": "^4.0.4",
     "jsonwebtoken": "^8.2.2",
     "mongodb": "^3.0.7",
     "mongoose": "^5.0.17",
@@ -40,7 +40,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
-    "nodemon": "^1.9.2",
+    "nodemon": "^1.19.1",
     "prettier": "^1.12.1"
   }
 }
