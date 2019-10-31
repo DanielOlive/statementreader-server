@@ -16,7 +16,7 @@
     "bluebird": "^3.5.1",
     "body-parser": "^1.15.1",
     "consolidate": "^0.14.1",
-    "csv-parse": "^2.4.0",
+    "csv-parse": "^4.4.6",
     "dotenv": "^5.0.1",
     "express": "^4.13.4",
     "handlebars": "^4.1.2",
